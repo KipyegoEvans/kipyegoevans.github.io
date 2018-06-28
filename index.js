@@ -56,6 +56,7 @@ const convertCurrency = () => {
               + query + '&compact=ultra';
 
     fetch(url).then((res) => {
+      console.log(res);
               res.json().then((jsondata) => {
               console.log(jsondata)
               let val = jsondata[query];
