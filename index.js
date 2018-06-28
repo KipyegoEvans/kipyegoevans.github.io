@@ -25,14 +25,13 @@ const currencylist = () =>{
 
   fetch(url).then( (res) =>{
     res.json().then((data)=>{
-      console.log(data)
-      // for(const key of data.results) {
+      for(key in data.results) {
         
-      //   option = `<option> ${key} </option>`;
-      //   to.innerHTML += option;
-      //   from.innerHTML += option;
+        option = `<option> ${key} </option>`;
+        to.innerHTML += option;
+        from.innerHTML += option;
 
-      // };
+      };
 
     });
 
