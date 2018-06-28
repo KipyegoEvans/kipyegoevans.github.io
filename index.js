@@ -10,7 +10,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
   var url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
             + query + '&compact=ultra';
 
-  https.get(url, function(res){
+  fetch(url, (res) => {
       var body = '';
 
       res.on('data', function(chunk){
