@@ -7,8 +7,8 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
   toCurrency = encodeURIComponent(toCurrency);
   var query = fromCurrency + '_' + toCurrency;
 
-  var url = 'https://www.currencyconverterapi.com/api/v5/convert?q='
-            + query + '&compact=ultra&apiKey=' + apiKey;
+  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
+            + query + '&compact=ultra';
 
   https.get(url, function(res){
       var body = '';
