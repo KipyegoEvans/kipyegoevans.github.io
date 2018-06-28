@@ -5,15 +5,15 @@ self.addEventListener('load', (e)=>{
 
 })
 
-// if ('serviceWorker' in navigator) {
-//       navigator.serviceWorker.register('/sw.js').then((reg)=>{
+if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then((reg)=>{
 
-//       console.log('Service worker registered successfully');
+      console.log('Service worker registered successfully');
 
-//     }).catch((err)=>{
-//       console.log('Ooops' ,err);
-//     })
-// }
+    }).catch((err)=>{
+      console.log('Ooops' ,err);
+    })
+}
 
 
 //get currency list for user to select
@@ -25,11 +25,12 @@ const currencylist = () =>{
 
   fetch(url).then( (res) =>{
     res.json().then((data)=>{
-      for(const key of data.results) {
+      console.log(data)
+      // for(const key of data.results) {
         
-        option = `<option> ${key} </option>`;
-        to.innerHTML += option;
-        from.innerHTML += option;
+      //   option = `<option> ${key} </option>`;
+      //   to.innerHTML += option;
+      //   from.innerHTML += option;
 
       };
 
