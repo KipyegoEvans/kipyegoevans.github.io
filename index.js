@@ -29,7 +29,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
 //uncomment to test
 
-convertCurrency(10, 'USD', 'PHP', function(err, amount) {
+convertCurrency(10, 'USD', 'PHP', (err, amount)=> {
   let p = document.getElementById('convert');
-  p.innerHTML += `${amount} now`;
-});
+  p.innerHTML += amount + 'Yes';
+})
