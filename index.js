@@ -32,7 +32,7 @@ const currencylist = () =>{
       //   to.innerHTML += option;
       //   from.innerHTML += option;
 
-      };
+      // };
 
     });
 
