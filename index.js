@@ -55,20 +55,17 @@ const convertCurrency = () => {
     const url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
               + query + '&compact=ultra';
 
-    fetch(url)
-          .then((res) => {
-              res.json()
-          }).then((jsondata) => {
+    fetch(url).then((res) => {
+              res.json().then((jsondata) => {
               console.log(jsondata)
               let val = jsondata[fromCurrency];
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
-                  cb(null , total);
               } else {
                   var err = new Error("Value not found for " + query);
-                  cb(err);
               }
 
           })
         }
+      }

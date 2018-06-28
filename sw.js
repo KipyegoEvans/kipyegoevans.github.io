@@ -1,26 +1,42 @@
 
-// let cacheName = 'currencyConverter'
+let cacheName = 'currencyConverter'
 
-// self.addEventListener('install', (e)=>{
+self.addEventListener('install', (e)=>{
 
-//   e.waitUntil(
-//     caches.open(cacheName).then((cache)=>{
+  e.waitUntil(
+    caches.open(cacheName).then((cache)=>{
 
-//       return cache.addAll([
-//         "index.hmtl",
-//         "index.js",
-//         "main.css"
-//         ]);
-//     });
-//   );
-// })
+      return cache.addAll([
+        "index.hmtl",
+        "index.js",
+        "main.css"
+        ]);
+    });
+  );
+})
 
-// self.addEventListener('fetch', (e)=>{
+self.addEventListener('activate', (e)=>{
+  e.waitUntil(
 
-//   event.respondWith(
-//       caches.open(cacheName).then((cache)=>{
-//         return cache.match(event.request);
-//       })
-//     )
+    caches.keys().then((names)=>{
+        Promise.all(
+          names.filter((name)=>{
+            return name !== cacheName;
+          }).map((name)=>{
+            return caches.delete(name);
+          })
+          );
+      })
 
-// })
+    )
+})
+
+self.addEventListener('fetch', (e)=>{
+
+  event.respondWith(
+      caches.open(cacheName).then((cache)=>{
+        return cache.match(event.request) || fetch(event.request);
+      })
+    );
+
+})
