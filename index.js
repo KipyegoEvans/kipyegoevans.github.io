@@ -56,13 +56,13 @@ const convertCurrency = () => {
               + query + '&compact=ultra';
 
     fetch(url).then((res) => {
-      console.log(res);
               res.json().then((jsondata) => {
               console.log(jsondata)
               let val = jsondata[query];
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
+                  result.innerHTML = total;
               } else {
                   var err = new Error("Value not found for " + query);
                   console.log(err);
