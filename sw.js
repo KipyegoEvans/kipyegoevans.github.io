@@ -1,19 +1,19 @@
 
-let cacheName = 'currencyConverter'
+// let cacheName = 'currencyConverter'
 
-self.addEventListener('install', (e)=>{
+// self.addEventListener('install', (e)=>{
 
-  e.waitUntil(
-    caches.open(cacheName).then((cache)=>{
+//   e.waitUntil(
+//     caches.open(cacheName).then((cache)=>{
 
-      return cache.addAll([
-        "index.hmtl",
-        "index.js",
-        "main.css"
-        ]);
-    });
-  );
-})
+//       return cache.addAll([
+//         "index.hmtl",
+//         "index.js",
+//         "main.css"
+//         ]);
+//     });
+//   );
+// })
 
 // self.addEventListener('fetch', (e)=>{
 
