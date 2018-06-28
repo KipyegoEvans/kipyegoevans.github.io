@@ -45,5 +45,5 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
 convertCurrency(10, 'USD', 'PHP', function(err, amount) {
   let p = document.getElementById('convert');
-  p.innerHTML += amount;
+  p.innerHTML += `${amount} now`;
 });
