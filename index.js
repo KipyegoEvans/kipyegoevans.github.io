@@ -60,7 +60,7 @@ const convertCurrency = () => {
               res.json()
           }).then((jsondata) => {
               console.log(jsondata)
-              let val = data[fromCurrency];
+              let val = jsondata[fromCurrency];
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
