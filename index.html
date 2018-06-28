@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<script src="index.js"></script>
 	<body>
-		//change
-		<h1>Hello World</h1>
-		<p>I'm hosted with GitHub Pages.</p>
-		<p id="convert">Your currency is</p>
+
+		<h1>Currency converter</h1>
+		<input type="text" name="amount" id="amount" value="1" placeholder="Enter Amount">
+		<select id="from">
+			<option>USD</option>
+		</select>
+
+		<select id="to">
+			<option>KES</option>
+		</select>
+		<button onclick="convertCurrency()">Convert</button>
+		<p id="result"></p>
+
 	</body>
+	<script src="index.js"></script>
 </html>
