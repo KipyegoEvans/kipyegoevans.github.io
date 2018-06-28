@@ -69,5 +69,5 @@ const convertCurrency = () => {
               }
 
           })
-        }
+        });
       }
