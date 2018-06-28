@@ -7,11 +7,11 @@ self.addEventListener('install', (e)=>{
     caches.open(cacheName).then((cache)=>{
 
       return cache.addAll([
-        "index.hmtl",
+        "index.html",
         "index.js",
         "main.css"
         ]);
-    });
+    })
   );
 })
 

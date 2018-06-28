@@ -15,7 +15,7 @@ if ('serviceWorker' in navigator) {
     })
 }
 
-
+ 
 //get currency list for user to select
 const currencylist = () =>{
 
@@ -58,12 +58,13 @@ const convertCurrency = () => {
     fetch(url).then((res) => {
               res.json().then((jsondata) => {
               console.log(jsondata)
-              let val = jsondata[fromCurrency];
+              let val = jsondata[query];
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
               } else {
                   var err = new Error("Value not found for " + query);
+                  console.log(err);
               }
 
           })
