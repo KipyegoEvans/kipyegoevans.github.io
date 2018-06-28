@@ -1,45 +1,31 @@
 // var https = require('https');
 
 function convertCurrency(amount, fromCurrency, toCurrency, cb) {
-  var apiKey = 'your-api-key-here';
+  
 
   fromCurrency = encodeURIComponent(fromCurrency);
   toCurrency = encodeURIComponent(toCurrency);
-  var query = fromCurrency + '_' + toCurrency;
+  const query = fromCurrency + '_' + toCurrency;
 
-  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
+  const url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
             + query + '&compact=ultra';
 
-  fetch(url, (res) => {
-      var body = '';
+  fetch(url)
+        .then((res) => {
+            res.json()
+        }).then((jsondata) => {
+            console.log(jsondata)
+            let val = data[fromCurrency];
 
-      res.on('data', function(chunk){
-          body += chunk;
-      });
-
-      res.on('end', function(){
-          try {
-            var jsonObj = JSON.parse(body);
-
-            var val = jsonObj[query];
-            if (val) {
-              var total = val * amount;
-              cb(null, Math.round(total * 100) / 100);
+            if (val != undefined) {
+                let total = parseFloat(val) * parseFloat(amount);
+                cb(null , total);
             } else {
-              var err = new Error("Value not found for " + query);
-              console.log(err);
-              cb(err);
+                var err = new Error("Value not found for " + query);
+                cb(err);
             }
-          } catch(e) {
-            console.log("Parse error: ", e);
-            cb(e);
-          }
-      });
-  }).on('error', function(e){
-        console.log("Got an error: ", e);
-        cb(e);
-  });
-}
+
+        })
 
 //uncomment to test
 
