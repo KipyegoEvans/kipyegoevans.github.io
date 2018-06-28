@@ -1,0 +1,78 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+
+h1{
+	font-size: 40px;
+	font-weight: 100;
+	font-family: sans-serif;
+	color: green;
+	text-align: center;
+}
+
+p#title{
+	font-size: 15px;
+	color: green;
+	background: #d6f7d6;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 30px
+
+}
+
+span#select{
+	font-size: 15px;
+	color: #057113;
+	text-align: left;
+	padding: 10px 
+}
+
+.container{
+	width: 600px;
+	margin: 100px auto;
+	height: 500px;
+	border: 1px solid green;
+	background: white;
+	overflow: auto;
+}
+
+.container input{
+	margin-top: 30px;
+	margin-left: 35%;
+	padding: 5px;
+	height: 25px;
+	width: 100px;
+	border: 1px solid lightgreen;
+	outline: none;
+}
+.select{
+	margin-top: 50px;
+	margin-left: 50px;
+
+}
+
+select{
+	padding: 5px;
+	height: 40px;
+	width: 70px;
+	border: 1px solid green;
+	outline: none;
+}
+option{
+	font-size: 17px;
+	font-family: sans-serif;
+}
+
+button{
+	text-align: center;
+	margin: 40px;
+	margin-left: 250px;
+	height: 40px;
+	width: 80px;
+	padding: 5px;
+	outline: none;
+	border: 1px solid green;
+	background: transparent;
+	cursor: pointer;
+}

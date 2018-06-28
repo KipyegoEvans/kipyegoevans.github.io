@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
+	<head><title>Evans: Currency Converter</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<body>
-		<h1>Currency converter</h1>
-		<input type="text" name="amount" id="amount" value="1" placeholder="Enter Amount">
-		<select id="from">
-		</select>
-		//
-		<select id="to">
-		</select>
-		<button onclick="convertCurrency()">Convert</button>
-		<p id="result"></p>
+		<div class="container">
+			<h1>Currency converter</h1>
+			<p id="title">Convert from one currency to another</p>
+			<input type="text" name="amount" id="amount" value="1" placeholder="Enter Amount">
+			<div class="select">
+				<span id="select">Convert from</span>
+				<select id="from">
+					<option>KES</option>
+				</select>
+
+				<span id="select">Convert to </span>
+				<select id="to">
+					<option>USD</option>
+				</select>
+			</div>
+			
+				
+			<button onclick="convertCurrency()">Convert</button>
+			<p id="result"></p>
+		</div>
+		
 
 	</body>
 	<script src="index.js"></script>
