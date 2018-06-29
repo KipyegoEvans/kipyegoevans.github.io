@@ -76,3 +76,8 @@ button{
 	background: transparent;
 	cursor: pointer;
 }
+p#result{
+	text-align: center;
+	line-height: 40px;
+	color: green;
+}
