@@ -35,10 +35,11 @@ self.addEventListener('fetch', (e)=> {
   e.respondWith(
       caches.open(cacheName).then((cache)=>{
         return cache.match(e.request).then((res)=>{
-          return res || fetch(event.request).then((res)=>{
-            cache.put(event.request, res.clone());
-            return res;
+          var fetchPromise = fetch(event.request).then((netResponse)=>{
+            cache.put(event.request, netResponse.clone());
+            return netResponse;
           })
+          return res || fetchPromise;
         })
       })
     )
