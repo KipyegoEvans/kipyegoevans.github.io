@@ -35,7 +35,7 @@ const currencylist = () =>{
 
     });
 
-  });
+  }).catch( throw new Error('Ooops' ,err));
 
 }
 
