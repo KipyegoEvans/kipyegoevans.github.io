@@ -35,7 +35,9 @@ const currencylist = () =>{
 
     });
 
-  }).catch( throw new Error('Ooops' ,err));
+  }).on(error, (err)=>{
+    console.log(err);
+  })
 
 }
 
