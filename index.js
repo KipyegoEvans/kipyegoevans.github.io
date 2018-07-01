@@ -74,7 +74,7 @@ const convertCurrency = () => {
     const url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
               + query + '&compact=ultra';
 
-              try{
+
     fetch(url).then((res) => {
               res.json().then((jsondata) => {
               let val = jsondata[query];
@@ -96,9 +96,5 @@ const convertCurrency = () => {
               }
 
           })
-        })
-  } catch(error){
-    let rates = db.transaction('currency','readwrite').objectStore('currency').getAll();
-    console.log(rates.result)
-  }
+        });
       }
