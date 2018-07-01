@@ -62,7 +62,7 @@ const currencylist = () =>{
     fetchCurr().then(data=>{
 
       for(key in data.results) {
-        option = `<option> ${key} </option>`;
+        option = `<option> ${data.results.currencyName} </option>`;
         to.innerHTML += option;
         from.innerHTML += option;
       }
@@ -95,7 +95,10 @@ const convertCurrency = () => {
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
-                  result.value = total;
+                  if (total !== NaN) {
+                    result.value = total;
+                  }
+                  
               } else {
                   var err = new Error("Value not found for " + query);
                   console.log(err);
