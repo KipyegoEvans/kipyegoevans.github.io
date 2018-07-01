@@ -32,7 +32,7 @@ self.addEventListener('activate', (e)=>{
 })
 //df
 self.addEventListener('fetch', (e)=> {
-  var requestUrl = new URL(event.request.url);
+  var requestUrl = new URL(e.request.url);
   if (requestUrl.pathname === '/api/v5/convert') {
     return;
   }
