@@ -49,7 +49,7 @@ if ('indexedDB' in window) {
 
       request.onupgradeneeded = ()=>{
           let db = request.result;
-          let store = db.createObjectStore('currency',{autoIncreament: true});
+          let store = db.createObjectStore('currency',{keyPath: 'name'});
 
           };
 
@@ -79,7 +79,7 @@ const convertCurrency = () => {
               res.json().then((jsondata) => {
               let val = jsondata[query];
               var item = {
-                name: query,
+                name: `'${query}'`,
                 rate: val
               }
               db.transaction('currency','readwrite').objectStore('currency').add(item);
