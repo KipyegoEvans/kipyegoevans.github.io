@@ -62,7 +62,7 @@ const currencylist = () =>{
     fetchCurr().then(data=>{
 
       for(key in data.results) {
-        option = `<option> ${key.currencyName} </option>`;
+        option = `<option> ${key} </option>`;
         to.innerHTML += option;
         from.innerHTML += option;
       }
