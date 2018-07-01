@@ -9,7 +9,8 @@ self.addEventListener('install', (e)=>{
       return cache.addAll([
         "index.html",
         "index.js",
-        "main.css"
+        "main.css",
+        "/api/v5/currencies"
         ]);
     })
   );

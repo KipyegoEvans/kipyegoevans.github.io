@@ -58,6 +58,7 @@ select{
 	width: 70px;
 	border: 1px solid green;
 	outline: none;
+	background: #50E2C1;
 }
 option{
 	font-size: 17px;

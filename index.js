@@ -26,15 +26,11 @@ const fetchCurr = () =>{
 }
 
 if ('indexedDB' in window) {
-      let request = indexedDB.open('currencylist', 1);
+      let request = indexedDB.open('convertions', 1);
 
       request.onupgradeneeded = ()=>{
           let db = request.result;
           let store = db.createObjectStore('currency',{keyPath: 'id'});
-
-          fetchCurr().then(data=>{
-              store.put(data.results);
-          })
 
           };
 
@@ -53,11 +49,6 @@ const currencylist = () =>{
   
   let from = document.getElementById('from');
   let to = document.getElementById('to');
-
-  //Check if database exist 
-  //if it exists fetch data and use it for the page
-  //if !exist Fetch data from net and store it on IndexedDB
-  //And fetch data for use on the page
 
     fetchCurr().then(data=>{
 
