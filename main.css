@@ -75,7 +75,15 @@ button{
 	border: 1px solid green;
 	background: transparent;
 	cursor: pointer;
+	transition: .2s;
+	color: darkgreen;
 }
+
+button:active , button:hover{
+	background: lightgreen;
+	color: white;
+}
+
 input#result{
 	text-align: center;
 	line-height: 40px;

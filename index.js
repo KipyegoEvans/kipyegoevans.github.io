@@ -63,8 +63,8 @@ const currencylist = () =>{
         to.innerHTML += option;
         from.innerHTML += option;
       }
-    }
-  })
+    })
+  }
 
       
 
@@ -76,6 +76,7 @@ const convertCurrency = () => {
     let toCurrency = document.getElementById('to').value;
     let amount = document.getElementById('amount').value;
     let result = document.getElementById('result');
+    let convert = document.getElementById('convert');
 
     fromCurrency = encodeURIComponent(fromCurrency);
     toCurrency = encodeURIComponent(toCurrency);
@@ -83,6 +84,7 @@ const convertCurrency = () => {
 
     const url = 'https://free.currencyconverterapi.com/api/v5/convert?q='
               + query + '&compact=ultra';
+
 
     fetch(url).then((res) => {
               res.json().then((jsondata) => {
