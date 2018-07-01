@@ -49,7 +49,7 @@ if ('indexedDB' in window) {
 
       request.onupgradeneeded = ()=>{
           let db = request.result;
-          let store = db.createObjectStore('currency',{autoIncreament});
+          let store = db.createObjectStore('currency',{autoIncreament: true});
 
           };
 
