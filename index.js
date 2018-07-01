@@ -25,25 +25,25 @@ const fetchCurr = () =>{
 
 }
 
-if ('indexedDB' in window) {
-      let request = indexedDB.open('currencylist', 1);
+// if ('indexedDB' in window) {
+//       let request = indexedDB.open('currencylist', 1);
 
-      request.onupgradeneeded = ()=>{
-          let db = request.result;
-          let store = db.createObjectStore('currency',{keyPath: 'id'});
-          const data = fetchCurr();
+//       request.onupgradeneeded = ()=>{
+//           let db = request.result;
+//           let store = db.createObjectStore('currency',{keyPath: 'id'});
+//           const data = fetchCurr();
 
-          store.put(data.results);
+//           store.put(data.results);
 
-          };
+//           };
 
 
 
-      request.onsuccess = ()=>{
-          db = request.result;
-    };
+//       request.onsuccess = ()=>{
+//           db = request.result;
+//     };
 
-}
+// }
 
 
 //get currency list for user to select
