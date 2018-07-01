@@ -76,8 +76,17 @@ button{
 	background: transparent;
 	cursor: pointer;
 }
-p#result{
+input#result{
 	text-align: center;
 	line-height: 40px;
+	color: green;
+	margin: 30px;
+}
+
+p#footer {
+	position: absolute;
+	bottom: 20px;
+	left: 400px;
+	font-size: 14px;
 	color: green;
 }
