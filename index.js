@@ -31,9 +31,6 @@ if ('indexedDB' in window) {
       request.onupgradeneeded = ()=>{
           let db = request.result;
           let store = db.createObjectStore('currency',{keyPath: 'id'});
-          const data = fetchCurr();
-
-          store.put(data);
 
           };
 
