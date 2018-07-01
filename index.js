@@ -58,7 +58,6 @@ const currencylist = () =>{
     fetchCurr().then(data=>{
 
       for(key in data.results) {
-        console.log(key);
         option = `<option> ${key} </option>`;
         to.innerHTML += option;
         from.innerHTML += option;
@@ -76,7 +75,6 @@ const convertCurrency = () => {
     let toCurrency = document.getElementById('to').value;
     let amount = document.getElementById('amount').value;
     let result = document.getElementById('result');
-    let convert = document.getElementById('convert');
 
     fromCurrency = encodeURIComponent(fromCurrency);
     toCurrency = encodeURIComponent(toCurrency);
@@ -93,7 +91,7 @@ const convertCurrency = () => {
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
-                  result.innerHTML = total;
+                  result.value = total;
               } else {
                   var err = new Error("Value not found for " + query);
                   console.log(err);
