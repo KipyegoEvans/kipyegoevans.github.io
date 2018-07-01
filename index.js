@@ -30,7 +30,7 @@ if ('indexedDB' in window) {
 
       request.onupgradeneeded = ()=>{
           let db = request.result;
-          let store = db.createObjectStore('currency');
+          let store = db.createObjectStore('currency',{keyPath: 'id'});
           const data = fetchCurr();
 
           store.put(data.results);
@@ -58,7 +58,7 @@ const currencylist = () =>{
   //if !exist Fetch data from net and store it on IndexedDB
   //And fetch data for use on the page
 
-    data = fetchCurr();
+    const data = fetchCurr();
     console.log(data);
 
       for(key in data.results) {
