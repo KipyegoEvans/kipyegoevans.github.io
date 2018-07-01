@@ -9,7 +9,8 @@ self.addEventListener('install', (e)=>{
       return cache.addAll([
         "index.html",
         "index.js",
-        "main.css"
+        "main.css",
+        "api/v5/currencies"
         ]);
     })
   );
@@ -35,10 +36,7 @@ self.addEventListener('fetch', (e)=> {
   e.respondWith(
       caches.open(cacheName).then((cache)=>{
         return cache.match(e.request).then((res)=>{
-          return res || fetch(e.request).then(res=>{
-            cache.put(e.request , res.clone());
-            return res;
-          });
+          return res || fetch(e.request);
         })
       })
     )
