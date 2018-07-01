@@ -25,23 +25,6 @@ const fetchCurr = () =>{
 
 }
 
-if ('indexedDB' in window) {
-      let request = indexedDB.open('convertions', 1);
-
-      request.onupgradeneeded = ()=>{
-          let db = request.result;
-          let store = db.createObjectStore('currency',{keyPath: 'id'});
-
-          };
-
-
-
-      request.onsuccess = ()=>{
-          db = request.result;
-    };
-
-}
-
 
 //get currency list for user to select
 const currencylist = () =>{
@@ -61,7 +44,20 @@ const currencylist = () =>{
   }
 
       
+if ('indexedDB' in window) {
+      let request = indexedDB.open('myConversions', 1);
 
+      request.onupgradeneeded = ()=>{
+          let db = request.result;
+          let store = db.createObjectStore('currency',{autoIncreament});
+
+          };
+
+      request.onsuccess = ()=>{
+          db = request.result;
+    };
+
+}
 
 //convert currency
 const convertCurrency = () => {
@@ -81,7 +77,7 @@ const convertCurrency = () => {
 
     fetch(url).then((res) => {
               res.json().then((jsondata) => {
-              console.log(jsondata)
+              db.transaction('currency','readwrite').objectStore('currency').put(jsondata);
               let val = jsondata[query];
 
               if (val != undefined) {
