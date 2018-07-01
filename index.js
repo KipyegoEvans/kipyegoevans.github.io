@@ -55,7 +55,7 @@ const currencylist = () =>{
   //if !exist Fetch data from net and store it on IndexedDB
   //And fetch data for use on the page
 
-    const data = fetchCurr();
+    fetchCurr().then(data=>{
 
       for(key in data) {
         console.log(key);
@@ -64,6 +64,9 @@ const currencylist = () =>{
         from.innerHTML += option;
       }
     }
+  })
+
+      
 
 
 //convert currency
