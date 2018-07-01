@@ -78,7 +78,7 @@ const convertCurrency = () => {
     fetch(url).then((res) => {
               res.json().then((jsondata) => {
               let val = jsondata[query];
-              db.transaction('currency','readwrite').objectStore('currency').put({query: val});
+              db.transaction('currency','readwrite').objectStore('currency').put({query: val},query);
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
