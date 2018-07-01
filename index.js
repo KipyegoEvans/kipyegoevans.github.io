@@ -32,6 +32,10 @@ if ('indexedDB' in window) {
           let db = request.result;
           let store = db.createObjectStore('currency',{keyPath: 'id'});
 
+          fetchCurr().then(data=>{
+              store.put(data.results);
+          })
+
           };
 
 
