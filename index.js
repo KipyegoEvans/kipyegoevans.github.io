@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 
 const fetchCurr = () =>{
   const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
-  fetch(url).then(res=>{
+  return fetch(url).then(res=>{
     return res.json();
   })
 
