@@ -9,8 +9,7 @@ self.addEventListener('install', (e)=>{
       return cache.addAll([
         "index.html",
         "index.js",
-        "main.css",
-        "api/v5/currencies"
+        "main.css"
         ]);
     })
   );
@@ -33,6 +32,10 @@ self.addEventListener('activate', (e)=>{
 })
 //df
 self.addEventListener('fetch', (e)=> {
+  var requestUrl = new URL(event.request.url);
+  if (requestUrl.pathname === '/api/v5/convert') {
+    return;
+  }
   e.respondWith(
       caches.open(cacheName).then((cache)=>{
         return cache.match(e.request).then((res)=>{
