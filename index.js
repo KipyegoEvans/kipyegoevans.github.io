@@ -25,6 +25,22 @@ const fetchCurr = () =>{
 
 }
 
+const currConv = (url)=>{
+  return fetch(url).then(res=>{
+    return res.json();  
+  })
+}
+
+const dbPromise = idb.open('currency-store', 2, upgradeDB => {
+  // Note: we don't use 'break' in this switch statement,
+  // the fall-through behaviour is what we want.
+  switch (upgradeDB.oldVersion) {
+    case 0:
+      upgradeDB.createObjectStore('currency-list');
+    case 1:
+      upgradeDB.createObjectStore('my-conversions');
+  }
+});
 
 //get currency list for user to select
 const currencylist = () =>{
@@ -33,7 +49,13 @@ const currencylist = () =>{
   let from = document.getElementById('from');
   let to = document.getElementById('to');
 
-    fetchCurr().then(data=>{
+  let data = dbPromise.then(db =>{
+    return db.transaction('currency-list').objectStore('currency-list').getAll()
+    }).then(list =>{
+      return list
+  }) || fetchCurr();
+
+    data.then(data=>{
 
       for(key in data.results) {
         option = `<option> ${key} </option>`;
@@ -42,22 +64,6 @@ const currencylist = () =>{
       }
     })
   }
-
-      
-if ('indexedDB' in window) {
-      let request = indexedDB.open('myConversions', 1);
-
-      request.onupgradeneeded = ()=>{
-          let db = request.result;
-          let store = db.createObjectStore('currency',{keyPath: 'name'});
-
-          };
-
-      request.onsuccess = ()=>{
-          db = request.result;
-    };
-
-}
 
 //convert currency
 const convertCurrency = () => {
@@ -75,14 +81,12 @@ const convertCurrency = () => {
               + query + '&compact=ultra';
 
 
-    fetch(url).then((res) => {
-              res.json().then((jsondata) => {
+    currConv(url).then((jsondata) => {
               let val = jsondata[query];
               var item = {
                 name: `'${query}'`,
                 rate: val
               }
-              db.transaction('currency','readwrite').objectStore('currency').add(item);
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
@@ -96,5 +100,4 @@ const convertCurrency = () => {
               }
 
           })
-        });
       }
