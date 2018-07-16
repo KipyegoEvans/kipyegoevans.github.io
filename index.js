@@ -49,6 +49,8 @@ const currencylist = () =>{
   let from = document.getElementById('from');
   let to = document.getElementById('to');
 
+
+//fetch from database or from net if its a very first time
   let data = dbPromise.then(db =>{
     return db.transaction('currency-list').objectStore('currency-list').getAll()
     }).then(list =>{
@@ -56,6 +58,11 @@ const currencylist = () =>{
   }) || fetchCurr();
 
     data.then(data=>{
+
+      dbPromise.then(db =>{
+        db.transaction('currency-list').objectStore('currency-list', 'readwrite').put(data);
+        return tx.complete();
+      })
 
       for(key in data.results) {
         option = `<option> ${key} </option>`;
