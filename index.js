@@ -32,13 +32,12 @@ const currConv = (url)=>{
 }
 
 const dbPromise = idb.open('currency-store', 2, upgradeDB => {
-  // Note: we don't use 'break' in this switch statement,
-  // the fall-through behaviour is what we want.
+ 
   switch (upgradeDB.oldVersion) {
     case 0:
-      upgradeDB.createObjectStore('currency-list');
+      upgradeDB.createObjectStore('currency-list', {'keyPath' : 'id'});
     case 1:
-      upgradeDB.createObjectStore('my-conversions');
+      upgradeDB.createObjectStore('my-conversions', {'keyPath' : 'name'});
   }
 });
 
@@ -48,29 +47,34 @@ const currencylist = () =>{
   
   let from = document.getElementById('from');
   let to = document.getElementById('to');
-
+  let currlist;
 
 //fetch from database or from net if its a very first time
-  let data = dbPromise.then(db =>{
-    return db.transaction('currency-list').objectStore('currency-list').getAll()
-    }).then(list =>{
-      return list
-  }) || fetchCurr();
 
-    data.then(data=>{
+dbPromise.then(db =>{
+      
+      return db.transaction('currency-list','readwrite').objectStore('currency-list').getAll();
 
-      dbPromise.then(db =>{
-        db.transaction('currency-list').objectStore('currency-list', 'readwrite').put(data);
-        return tx.complete();
-      })
+        }).then(list =>{
+            if (list.length === 0) {
+              fetchCurr().then(fetchList =>{
+                currlist = Object.values(fetchList.results);
+                dbPromise.then(db =>{
 
-      for(key in data.results) {
-        option = `<option> ${key} </option>`;
-        to.innerHTML += option;
-        from.innerHTML += option;
+                    const tx = db.transaction('currency-list','readwrite');
+                    tx.objectStore('currency-list').put(currlist);
+                    return tx.complete;
+                });
+              });
+            }
+            else{
+              currlist = list;
+            }
+        })
+
+        
+
       }
-    })
-  }
 
 //convert currency
 const convertCurrency = () => {
@@ -90,10 +94,17 @@ const convertCurrency = () => {
 
     currConv(url).then((jsondata) => {
               let val = jsondata[query];
-              var item = {
+              let item = {
                 name: `'${query}'`,
                 rate: val
               }
+
+
+              dbPromise.then(db =>{
+                return db.transaction('my-conversions', 'readwrite')
+                .objectStore('my-conversions').put(item);
+              })
+
 
               if (val != undefined) {
                   let total = parseFloat(val) * parseFloat(amount);
